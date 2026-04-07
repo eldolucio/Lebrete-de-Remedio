@@ -1,0 +1,34 @@
+{
+  "cli": {
+    "version": ">= 5.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "distribution": "store"
+    },
+    "android-preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "distribution": "internal"
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "serviceAccount": "@sensitive/android-keystore.json",
+        "track": "internal"
+      },
+      "ios": {
+        "asciiProvider": "@sensitive/asciiProvider.json"
+      }
+    }
+  }
+}

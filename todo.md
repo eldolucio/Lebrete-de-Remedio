@@ -26,3 +26,15 @@
 - [ ] Compartilhamento de medicamentos com cuidadores
 - [ ] Relatórios de aderência
 - [ ] Integração com calendário do dispositivo
+
+
+## Empacotamento e Distribuição
+
+- [x] Preparar arquivos nativos para Android e iOS
+- [x] Criar scripts de build automatizados
+- [x] Configurar keystore para assinatura Android
+- [ ] Gerar build APK para Android (executar localmente)
+- [ ] Gerar build IPA para iOS (executar em macOS)
+- [ ] Testar builds em dispositivos reais
+- [ ] Preparar para publicação na Google Play
+- [ ] Preparar para publicação na App Store
