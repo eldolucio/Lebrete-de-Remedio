@@ -1,6 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Medication, MedicationDose, AppSettings, DayOfWeek } from './types';
+import * as Notifications from 'expo-notifications';
 
 interface MedicationContextType {
   medications: Medication[];
@@ -16,6 +17,7 @@ interface MedicationContextType {
   getTodaysDoses: () => MedicationDose[];
   generateDosesForDay: (date: Date) => Promise<void>;
   isLoading: boolean;
+  scheduleDoseNotifications: () => Promise<void>;
 }
 
 const MedicationContext = createContext<MedicationContextType | undefined>(undefined);
@@ -228,6 +230,46 @@ export function MedicationProvider({ children }: { children: React.ReactNode }) 
     [medications, doses]
   );
 
+  const scheduleDoseNotifications = useCallback(async () => {
+    if (!settings.notificationsEnabled) return;
+
+    try {
+      // Cancel all existing notifications
+      await Notifications.cancelAllScheduledNotificationsAsync();
+
+      // Schedule notifications for pending doses
+      const pendingDoses = doses.filter((dose) => dose.status === 'pending');
+
+      for (const dose of pendingDoses) {
+        const medication = medications.find((m) => m.id === dose.medicationId);
+        if (!medication) continue;
+
+        const now = Date.now();
+        const scheduledTime = dose.scheduledTime;
+        const minutesBefore = settings.notificationMinutesBefore || 30;
+        const notificationTime = scheduledTime - minutesBefore * 60 * 1000;
+
+        // Only schedule if notification time is in the future
+        if (notificationTime > now) {
+          const delayInSeconds = Math.floor((notificationTime - now) / 1000);
+          await Notifications.scheduleNotificationAsync({
+            content: {
+              title: `Hora de tomar ${medication.name}`,
+              body: `Dosagem: ${medication.dosage}`,
+              sound: 'default',
+              badge: 1,
+            },
+            trigger: {
+              seconds: delayInSeconds,
+            } as any,
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error scheduling notifications:', error);
+    }
+  }, [doses, medications, settings]);
+
   const value: MedicationContextType = {
     medications,
     doses,
@@ -242,6 +284,7 @@ export function MedicationProvider({ children }: { children: React.ReactNode }) 
     getTodaysDoses,
     generateDosesForDay,
     isLoading,
+    scheduleDoseNotifications,
   };
 
   return (

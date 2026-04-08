@@ -10,9 +10,10 @@
 - [x] Navegação por abas (Home, Histórico, Configurações)
 - [x] Armazenamento local de medicamentos (AsyncStorage)
 - [x] Marcar dose como tomada
-- [ ] Notificações locais nos horários programados
-- [ ] Editar medicamento existente
-- [ ] Deletar medicamento
+- [x] Notificações locais nos horários programados
+- [x] Editar medicamento existente
+- [x] Deletar medicamento
+- [x] Tela de detalhes do medicamento
 - [x] Histórico de doses tomadas
 - [x] Filtros no histórico (Todos, Tomados, Perdidos)
 - [x] Logo e branding do app

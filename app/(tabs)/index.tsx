@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, RefreshControl, FlatList, Pressable } from 'react-native';
+import { ScrollView, Text, View, Pressable, RefreshControl, FlatList } from 'react-native';
 import { ScreenContainer } from '@/components/screen-container';
 import { useMedications } from '@/lib/medication-context';
 import { MedicationCard } from '@/components/medication-card';
@@ -6,18 +6,22 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useColors } from '@/hooks/use-colors';
+import { useNotifications } from '@/hooks/use-notifications';
 
 export default function HomeScreen() {
   const router = useRouter();
   const colors = useColors();
-  const { getTodaysDoses, markDoseTaken, generateDosesForDay, isLoading } = useMedications();
+  const { getTodaysDoses, markDoseTaken, generateDosesForDay, isLoading, scheduleDoseNotifications } = useMedications();
   const [refreshing, setRefreshing] = useState(false);
   const [doses, setDoses] = useState(getTodaysDoses());
+  useNotifications();
 
   useEffect(() => {
     // Generate doses for today if needed
     generateDosesForDay(new Date());
     updateDoses();
+    // Schedule notifications
+    scheduleDoseNotifications();
   }, []);
 
   const updateDoses = () => {
@@ -28,6 +32,7 @@ export default function HomeScreen() {
     setRefreshing(true);
     await generateDosesForDay(new Date());
     updateDoses();
+    await scheduleDoseNotifications();
     setRefreshing(false);
   };
 
