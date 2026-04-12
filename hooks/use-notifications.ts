@@ -100,7 +100,7 @@ export function useNotifications() {
         },
         trigger: {
           type: 'time',
-          seconds: delayInSeconds,
+          seconds: Math.max(1, delayInSeconds),
         } as any,
       });
 
@@ -137,3 +137,5 @@ export function useNotifications() {
     requestNotificationPermissions,
   };
 }
+
+export type NotificationsHook = ReturnType<typeof useNotifications>;

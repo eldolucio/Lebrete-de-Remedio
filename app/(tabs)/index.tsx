@@ -20,9 +20,14 @@ export default function HomeScreen() {
     // Generate doses for today if needed
     generateDosesForDay(new Date());
     updateDoses();
-    // Schedule notifications
-    scheduleDoseNotifications();
   }, []);
+
+  useEffect(() => {
+    // Schedule notifications when doses change
+    if (doses.length > 0) {
+      scheduleDoseNotifications();
+    }
+  }, [doses, scheduleDoseNotifications]);
 
   const updateDoses = () => {
     setDoses(getTodaysDoses());
@@ -32,7 +37,6 @@ export default function HomeScreen() {
     setRefreshing(true);
     await generateDosesForDay(new Date());
     updateDoses();
-    await scheduleDoseNotifications();
     setRefreshing(false);
   };
 

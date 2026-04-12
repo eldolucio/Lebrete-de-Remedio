@@ -94,13 +94,42 @@ export function MedicationProvider({ children }: { children: React.ReactNode }) 
       await saveMedications(updated);
 
       // Generate doses for the next 30 days
+      const newDoses: MedicationDose[] = [];
       for (let i = 0; i < 30; i++) {
         const date = new Date();
         date.setDate(date.getDate() + i);
-        await generateDosesForMedicationAndDay(newMedication, date);
+        const dayIndex = date.getDay();
+        const dayMap: Record<number, DayOfWeek> = {
+          0: 'sunday',
+          1: 'monday',
+          2: 'tuesday',
+          3: 'wednesday',
+          4: 'thursday',
+          5: 'friday',
+          6: 'saturday',
+        };
+        const dayOfWeek = dayMap[dayIndex];
+
+        if (newMedication.daysOfWeek.includes(dayOfWeek)) {
+          for (const schedule of newMedication.schedules) {
+            const [hours, minutes] = schedule.time.split(':').map(Number);
+            const doseDate = new Date(date);
+            doseDate.setHours(hours, minutes, 0, 0);
+            const doseId = `${newMedication.id}-${doseDate.getTime()}`;
+            newDoses.push({
+              id: doseId,
+              medicationId: newMedication.id,
+              medicationName: newMedication.name,
+              scheduledTime: doseDate.getTime(),
+              status: 'pending',
+            });
+          }
+        }
       }
+      const updatedDoses = [...doses, ...newDoses];
+      await saveDoses(updatedDoses);
     },
-    [medications]
+    [medications, doses]
   );
 
   const updateMedication = useCallback(
@@ -200,6 +229,7 @@ export function MedicationProvider({ children }: { children: React.ReactNode }) 
       return;
     }
 
+    const newDoses: MedicationDose[] = [];
     for (const schedule of medication.schedules) {
       const [hours, minutes] = schedule.time.split(':').map(Number);
       const doseDate = new Date(date);
@@ -216,8 +246,12 @@ export function MedicationProvider({ children }: { children: React.ReactNode }) 
           scheduledTime: doseDate.getTime(),
           status: 'pending',
         };
-        setDoses((prev) => [...prev, newDose]);
+        newDoses.push(newDose);
       }
+    }
+    if (newDoses.length > 0) {
+      const updatedDoses = [...doses, ...newDoses];
+      await saveDoses(updatedDoses);
     }
   };
 

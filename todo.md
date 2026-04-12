@@ -39,3 +39,10 @@
 - [ ] Testar builds em dispositivos reais
 - [ ] Preparar para publicação na Google Play
 - [ ] Preparar para publicação na App Store
+
+
+## Bugs Reportados
+
+- [x] Medicamentos não são salvos corretamente
+- [x] Notificações não são acionadas nos horários programados
+- [x] Ícones da barra de navegação inferior não aparecem
