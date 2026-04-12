@@ -46,3 +46,14 @@
 - [x] Medicamentos não são salvos corretamente
 - [x] Notificações não são acionadas nos horários programados
 - [x] Ícones da barra de navegação inferior não aparecem
+
+
+## Perfil de Usuário
+
+- [x] Criar tipo UserProfile com informações pessoais
+- [x] Criar contexto para gerenciar perfil do usuário
+- [x] Criar tela de perfil com edição de informações pessoais
+- [x] Adicionar campos de contato de emergência
+- [x] Integrar perfil com armazenamento local
+- [x] Adicionar aba de perfil na navegação
+- [x] Criar testes para funcionalidades de perfil

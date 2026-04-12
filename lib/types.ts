@@ -55,3 +55,30 @@ export interface AppSettings {
   notificationMinutesBefore: number;
   theme: 'light' | 'dark' | 'auto';
 }
+
+export interface EmergencyContact {
+  id: string;
+  name: string;
+  relationship: string;
+  phone: string;
+  email?: string;
+}
+
+export interface UserProfile {
+  id: string;
+  fullName: string;
+  dateOfBirth?: string; // YYYY-MM-DD format
+  gender?: 'male' | 'female' | 'other';
+  bloodType?: string;
+  allergies?: string;
+  medicalConditions?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
+  emergencyContacts: EmergencyContact[];
+  createdAt: number;
+  updatedAt: number;
+}

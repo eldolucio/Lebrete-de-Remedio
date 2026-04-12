@@ -9,6 +9,7 @@ import { Platform } from "react-native";
 import "@/lib/_core/nativewind-pressable";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { MedicationProvider } from "@/lib/medication-context";
+import { UserProfileProvider } from "@/lib/user-profile-context";
 import {
   SafeAreaFrameContext,
   SafeAreaInsetsContext,
@@ -80,8 +81,9 @@ export default function RootLayout() {
   }, [initialInsets, initialFrame]);
 
   const content = (
-    <MedicationProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+    <UserProfileProvider>
+      <MedicationProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
         <trpc.Provider client={trpcClient} queryClient={queryClient}>
           <QueryClientProvider client={queryClient}>
           {/* Default to hiding native headers so raw route segments don't appear (e.g. "(tabs)", "products/[id]"). */}
@@ -94,9 +96,10 @@ export default function RootLayout() {
           <StatusBar style="auto" />
           </QueryClientProvider>
         </trpc.Provider>
-      </GestureHandlerRootView>
-    </MedicationProvider>
-  );
+        </GestureHandlerRootView>
+      </MedicationProvider>
+    </UserProfileProvider>
+    );
 
   const shouldOverrideSafeArea = Platform.OS === "web";
 
@@ -116,7 +119,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <SafeAreaProvider initialMetrics={providerInitialMetrics}>{content}</SafeAreaProvider>
+      <SafeAreaProvider initialMetrics={providerInitialMetrics}>
+        {content}
+      </SafeAreaProvider>
     </ThemeProvider>
   );
 }
