@@ -63,6 +63,8 @@ Veja todos os seus medicamentos de hoje com status de cada dose:
 
 Toque em qualquer medicamento para ver detalhes ou marcar como tomado.
 
+![Tela Home](https://d2xsxph8kpxj0f.cloudfront.net/310419663029984962/nNcwqTsHWekPPGcq3GmpLV/mockup-home-8TJaMT5rZiryGt4hv4vzSV.webp)
+
 ### Adicionar Medicamento
 Formulário simples com todos os campos necessários:
 - Nome do medicamento
@@ -70,6 +72,8 @@ Formulário simples com todos os campos necessários:
 - Múltiplos horários
 - Dias da semana
 - Notas adicionais
+
+![Tela Adicionar Medicamento](https://d2xsxph8kpxj0f.cloudfront.net/310419663029984962/nNcwqTsHWekPPGcq3GmpLV/mockup-add-medication-Gp7ZQb8RFmsDRoj9SoBSzE.webp)
 
 ### Histórico
 Veja todas as doses com filtros:
@@ -79,6 +83,8 @@ Veja todas as doses com filtros:
 
 Organize por data e acompanhe seu progresso.
 
+![Tela Histórico](https://d2xsxph8kpxj0f.cloudfront.net/310419663029984962/nNcwqTsHWekPPGcq3GmpLV/mockup-history-cX9i6BSaRKwxXa2WMGEUru.webp)
+
 ### Perfil
 Guarde informações importantes:
 - Dados pessoais (nome, data de nascimento, etc)
@@ -87,11 +93,15 @@ Guarde informações importantes:
 - Condições médicas
 - Contatos de emergência
 
+![Tela Perfil](https://d2xsxph8kpxj0f.cloudfront.net/310419663029984962/nNcwqTsHWekPPGcq3GmpLV/mockup-profile-axkJLW2dkEk34R3vb2dxVs.webp)
+
 ### Configurações
 Personalize o aplicativo:
 - Ativar/desativar notificações
 - Escolher antecedência do lembrete
 - Selecionar tema (claro/escuro)
+
+![Tela Configurações](https://d2xsxph8kpxj0f.cloudfront.net/310419663029984962/nNcwqTsHWekPPGcq3GmpLV/mockup-settings-Lru3pkoob7sH3LhVnBSLZr.webp)
 
 ## ❓ Perguntas Frequentes
 
