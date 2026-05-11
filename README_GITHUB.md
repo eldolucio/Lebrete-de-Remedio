@@ -2,6 +2,14 @@
 
 Um aplicativo móvel inteligente para gerenciar medicamentos, acompanhar doses e manter informações de saúde pessoais. Desenvolvido com **React Native**, **Expo** e **TypeScript**, o Lembrete de Remédio oferece uma experiência fluida e intuitiva para usuários iOS e Android.
 
+## 🆕 Atualização v1.0.1 - Interface Corrigida (11 de Maio de 2026)
+
+- ✅ **Barra de Navegação Limpa**: Removidos ícones duplicados, agora apenas 4 abas principais (Home, Histórico, Configurações, Perfil)
+- ✅ **Ícones Melhorados**: Corrigido ícone de Perfil (person.fill) e adicionados labels visíveis na barra inferior
+- ✅ **Estilos Aprimorados**: Cores de ícones inativos, padding e tamanhos otimizados para melhor UX
+- ✅ **Interface Profissional**: Design limpo e intuitivo seguindo padrões iOS (Human Interface Guidelines)
+- ✅ **Qualidade**: 22 testes passando, TypeScript sem erros, build sem warnings
+
 ## 🎯 Características Principais
 
 O aplicativo foi desenvolvido com foco em usabilidade e funcionalidade, oferecendo as seguintes características:
@@ -25,9 +33,9 @@ Os usuários podem controlar preferências de notificação, selecionar entre te
 
 | Plataforma | Status | Versão |
 |-----------|--------|---------|
-| iOS | ✅ Em desenvolvimento | 1.0.0 |
-| Android | ✅ Pronto | 1.0.0 |
-| Web | ✅ Suporte técnico | 1.0.0 |
+| iOS | ✅ Em desenvolvimento | 1.0.1 |
+| Android | ✅ Pronto | 1.0.1 |
+| Web | ✅ Suporte técnico | 1.0.1 |
 
 ## 🚀 Começando
 
@@ -322,6 +330,6 @@ Agradecemos à comunidade Expo, React Native e à comunidade open-source por for
 
 ---
 
-**Versão**: 1.0.0  
-**Última atualização**: Abril 2026  
+**Versão**: 1.0.1  
+**Última atualização**: Maio 2026  
 **Status**: ✅ Pronto para produção (Android) | 🔄 Em desenvolvimento (iOS)
